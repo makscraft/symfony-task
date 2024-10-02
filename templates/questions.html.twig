@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Страница с вопросами</h1>
+    <h3>{{ question.id }} вопрос: {{ question.name }} = </h3>
+    
+    {{ form_start(form, {action: '/questions/check'}) }}
+
+        <ol>
+            {% for choice in form.answers %}
+                <li class="form-check">
+                    {{ form_widget(choice) }}
+                    {{ form_label(choice) }}
+                </li>
+            {% endfor %}
+        </ol>
+
+        {% if check is null %}
+            <button>Проверить</button>
+        {% endif %}
+
+    {{ form_end(form) }}
+
+    {% if check != null %}
+        {% if check.success %}
+            <div class="success">Ответ правильный!</div>
+        {% else %}
+            <div class="fail">Ответ не правильный! Правильный ответ: {{ check.answers }}</div>
+        {% endif %}
+        
+        <a href="{{ next_question_url }}">{{ last ? 'Посмотреть результаты' : 'Следующий вопрос' }}</a>
+
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Страница с результатами</h1>
+    <h3>Правильные ответы</h3>
+    <ul>
+        {% for item in results.passed %}
+            <li>{{ item }}</li>
+        {% else %}
+            <li>-</li>
+        {% endfor %}
+    </ul>
+    <h3>Не правильные ответы</h3>
+    <ul>
+        {% for item in results.failed %}
+            <li>{{ item }}</li>
+        {% else %}
+            <li>-</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ start_url }}">Пройти тест еще раз</a>
+{% endblock %}
