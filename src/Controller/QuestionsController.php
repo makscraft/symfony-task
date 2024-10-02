@@ -50,7 +50,6 @@ class QuestionsController extends AbstractController
         else
         {
             $results = $session -> get('results');
-            //dd($results);
             $current = $session -> get('current');
 
             if($action === 'next')
